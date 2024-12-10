@@ -1,0 +1,389 @@
+{
+ "Description": "{\"createdOn\":\"Windows\",\"createdBy\":\"AmplifySandbox\",\"createdWith\":\"1.9.0\",\"stackType\":\"function-Lambda\",\"metadata\":{}}",
+ "Resources": {
+  "helloworldlambdaServiceRole1E1C4841": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ],
+    "Tags": [
+     {
+      "Key": "amplify:deployment-type",
+      "Value": "sandbox"
+     },
+     {
+      "Key": "amplify:friendly-name",
+      "Value": "hello-world"
+     },
+     {
+      "Key": "created-by",
+      "Value": "amplify"
+     }
+    ]
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-test01-81907-sandbox-2c13369eb4/function/hello-world-lambda/ServiceRole/Resource"
+   }
+  },
+  "helloworldlambda89B27E55": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "S3Bucket": {
+      "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
+     },
+     "S3Key": "fd5abbbcd126d734f363796795e8169f5569d0227b5f8e3a7842ce9a7ee074f4.zip"
+    },
+    "Environment": {
+     "Variables": {
+      "AMPLIFY_SSM_ENV_CONFIG": "{}"
+     }
+    },
+    "Handler": "index.handler",
+    "MemorySize": 512,
+    "Role": {
+     "Fn::GetAtt": [
+      "helloworldlambdaServiceRole1E1C4841",
+      "Arn"
+     ]
+    },
+    "Runtime": "nodejs20.x",
+    "Tags": [
+     {
+      "Key": "amplify:deployment-type",
+      "Value": "sandbox"
+     },
+     {
+      "Key": "amplify:friendly-name",
+      "Value": "hello-world"
+     },
+     {
+      "Key": "created-by",
+      "Value": "amplify"
+     }
+    ],
+    "Timeout": 3
+   },
+   "DependsOn": [
+    "helloworldlambdaServiceRole1E1C4841"
+   ],
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-test01-81907-sandbox-2c13369eb4/function/hello-world-lambda/Resource",
+    "aws:asset:path": "asset.fd5abbbcd126d734f363796795e8169f5569d0227b5f8e3a7842ce9a7ee074f4",
+    "aws:asset:is-bundled": true,
+    "aws:asset:property": "Code"
+   }
+  },
+  "CDKMetadata": {
+   "Type": "AWS::CDK::Metadata",
+   "Properties": {
+    "Analytics": "v2:deflate64:H4sIAAAAAAAA/zWOOw6DMBBEz0JvNmCK1AEpJQUcAC32gsxnLbEmFIi7R4CoXjEzT6MhfWtIItwkNnaMJ9fCXpIEsnVAMyrcpNknnFuLDXtLg0B54buyCc6zcjjDXvmJVNHxyUNJ1qAIBYHPCSUZ5KsZKeQopG4bFB0/jkNVJH5dDKlrUAfsHfeX8AmKjgvP1t398woM8vppDWkKSTSIc/GycnAzQXXzD7WwLpjdAAAA"
+   },
+   "Metadata": {
+    "aws:cdk:path": "amplify-test01-81907-sandbox-2c13369eb4/function/CDKMetadata/Default"
+   },
+   "Condition": "CDKMetadataAvailable"
+  }
+ },
+ "Conditions": {
+  "CDKMetadataAvailable": {
+   "Fn::Or": [
+    {
+     "Fn::Or": [
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "af-south-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-east-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-northeast-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-northeast-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-northeast-3"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-south-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-south-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-southeast-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-southeast-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-southeast-3"
+       ]
+      }
+     ]
+    },
+    {
+     "Fn::Or": [
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-southeast-4"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ca-central-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ca-west-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "cn-north-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "cn-northwest-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-central-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-central-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-north-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-south-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-south-2"
+       ]
+      }
+     ]
+    },
+    {
+     "Fn::Or": [
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-west-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-west-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-west-3"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "il-central-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "me-central-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "me-south-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "sa-east-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "us-east-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "us-east-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "us-west-1"
+       ]
+      }
+     ]
+    },
+    {
+     "Fn::Equals": [
+      {
+       "Ref": "AWS::Region"
+      },
+      "us-west-2"
+     ]
+    }
+   ]
+  }
+ },
+ "Outputs": {
+  "amplifytest0181907sandbox2c13369eb4functionhelloworldlambdaC7150E6ERef": {
+   "Value": {
+    "Ref": "helloworldlambda89B27E55"
+   }
+  }
+ }
+}

@@ -1,0 +1,365 @@
+{
+  "version": "tree-0.1",
+  "tree": {
+    "id": "App",
+    "path": "",
+    "children": {
+      "amplify-test01-81907-sandbox-2c13369eb4": {
+        "id": "amplify-test01-81907-sandbox-2c13369eb4",
+        "path": "amplify-test01-81907-sandbox-2c13369eb4",
+        "children": {
+          "deploymentType": {
+            "id": "deploymentType",
+            "path": "amplify-test01-81907-sandbox-2c13369eb4/deploymentType",
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.CfnOutput",
+              "version": "2.172.0"
+            }
+          },
+          "region": {
+            "id": "region",
+            "path": "amplify-test01-81907-sandbox-2c13369eb4/region",
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.CfnOutput",
+              "version": "2.172.0"
+            }
+          },
+          "function": {
+            "id": "function",
+            "path": "amplify-test01-81907-sandbox-2c13369eb4/function",
+            "children": {
+              "hello-world": {
+                "id": "hello-world",
+                "path": "amplify-test01-81907-sandbox-2c13369eb4/function/hello-world",
+                "constructInfo": {
+                  "fqn": "constructs.Construct",
+                  "version": "10.4.2"
+                }
+              },
+              "hello-world-lambda": {
+                "id": "hello-world-lambda",
+                "path": "amplify-test01-81907-sandbox-2c13369eb4/function/hello-world-lambda",
+                "children": {
+                  "ServiceRole": {
+                    "id": "ServiceRole",
+                    "path": "amplify-test01-81907-sandbox-2c13369eb4/function/hello-world-lambda/ServiceRole",
+                    "children": {
+                      "ImportServiceRole": {
+                        "id": "ImportServiceRole",
+                        "path": "amplify-test01-81907-sandbox-2c13369eb4/function/hello-world-lambda/ServiceRole/ImportServiceRole",
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.Resource",
+                          "version": "2.172.0"
+                        }
+                      },
+                      "Resource": {
+                        "id": "Resource",
+                        "path": "amplify-test01-81907-sandbox-2c13369eb4/function/hello-world-lambda/ServiceRole/Resource",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::IAM::Role",
+                          "aws:cdk:cloudformation:props": {
+                            "assumeRolePolicyDocument": {
+                              "Statement": [
+                                {
+                                  "Action": "sts:AssumeRole",
+                                  "Effect": "Allow",
+                                  "Principal": {
+                                    "Service": "lambda.amazonaws.com"
+                                  }
+                                }
+                              ],
+                              "Version": "2012-10-17"
+                            },
+                            "managedPolicyArns": [
+                              {
+                                "Fn::Join": [
+                                  "",
+                                  [
+                                    "arn:",
+                                    {
+                                      "Ref": "AWS::Partition"
+                                    },
+                                    ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+                                  ]
+                                ]
+                              }
+                            ],
+                            "tags": [
+                              {
+                                "key": "amplify:deployment-type",
+                                "value": "sandbox"
+                              },
+                              {
+                                "key": "amplify:friendly-name",
+                                "value": "hello-world"
+                              },
+                              {
+                                "key": "created-by",
+                                "value": "amplify"
+                              }
+                            ]
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_iam.CfnRole",
+                          "version": "2.172.0"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_iam.Role",
+                      "version": "2.172.0"
+                    }
+                  },
+                  "Code": {
+                    "id": "Code",
+                    "path": "amplify-test01-81907-sandbox-2c13369eb4/function/hello-world-lambda/Code",
+                    "children": {
+                      "Stage": {
+                        "id": "Stage",
+                        "path": "amplify-test01-81907-sandbox-2c13369eb4/function/hello-world-lambda/Code/Stage",
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.AssetStaging",
+                          "version": "2.172.0"
+                        }
+                      },
+                      "AssetBucket": {
+                        "id": "AssetBucket",
+                        "path": "amplify-test01-81907-sandbox-2c13369eb4/function/hello-world-lambda/Code/AssetBucket",
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_s3.BucketBase",
+                          "version": "2.172.0"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_s3_assets.Asset",
+                      "version": "2.172.0"
+                    }
+                  },
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "amplify-test01-81907-sandbox-2c13369eb4/function/hello-world-lambda/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::Lambda::Function",
+                      "aws:cdk:cloudformation:props": {
+                        "code": {
+                          "s3Bucket": {
+                            "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
+                          },
+                          "s3Key": "fd5abbbcd126d734f363796795e8169f5569d0227b5f8e3a7842ce9a7ee074f4.zip"
+                        },
+                        "environment": {
+                          "variables": {
+                            "AMPLIFY_SSM_ENV_CONFIG": "{}"
+                          }
+                        },
+                        "handler": "index.handler",
+                        "memorySize": 512,
+                        "role": {
+                          "Fn::GetAtt": [
+                            "helloworldlambdaServiceRole1E1C4841",
+                            "Arn"
+                          ]
+                        },
+                        "runtime": "nodejs20.x",
+                        "tags": [
+                          {
+                            "key": "amplify:deployment-type",
+                            "value": "sandbox"
+                          },
+                          {
+                            "key": "amplify:friendly-name",
+                            "value": "hello-world"
+                          },
+                          {
+                            "key": "created-by",
+                            "value": "amplify"
+                          }
+                        ],
+                        "timeout": 3
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_lambda.CfnFunction",
+                      "version": "2.172.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_lambda_nodejs.NodejsFunction",
+                  "version": "2.172.0"
+                }
+              },
+              "CDKMetadata": {
+                "id": "CDKMetadata",
+                "path": "amplify-test01-81907-sandbox-2c13369eb4/function/CDKMetadata",
+                "children": {
+                  "Default": {
+                    "id": "Default",
+                    "path": "amplify-test01-81907-sandbox-2c13369eb4/function/CDKMetadata/Default",
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.CfnResource",
+                      "version": "2.172.0"
+                    }
+                  },
+                  "Condition": {
+                    "id": "Condition",
+                    "path": "amplify-test01-81907-sandbox-2c13369eb4/function/CDKMetadata/Condition",
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.CfnCondition",
+                      "version": "2.172.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "constructs.Construct",
+                  "version": "10.4.2"
+                }
+              },
+              "amplifytest0181907sandbox2c13369eb4functionhelloworldlambdaC7150E6ERef": {
+                "id": "amplifytest0181907sandbox2c13369eb4functionhelloworldlambdaC7150E6ERef",
+                "path": "amplify-test01-81907-sandbox-2c13369eb4/function/amplifytest0181907sandbox2c13369eb4functionhelloworldlambdaC7150E6ERef",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnOutput",
+                  "version": "2.172.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.NestedStack",
+              "version": "2.172.0"
+            }
+          },
+          "function.NestedStack": {
+            "id": "function.NestedStack",
+            "path": "amplify-test01-81907-sandbox-2c13369eb4/function.NestedStack",
+            "children": {
+              "function.NestedStackResource": {
+                "id": "function.NestedStackResource",
+                "path": "amplify-test01-81907-sandbox-2c13369eb4/function.NestedStack/function.NestedStackResource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::CloudFormation::Stack",
+                  "aws:cdk:cloudformation:props": {
+                    "tags": [
+                      {
+                        "key": "amplify:deployment-type",
+                        "value": "sandbox"
+                      },
+                      {
+                        "key": "created-by",
+                        "value": "amplify"
+                      }
+                    ],
+                    "templateUrl": {
+                      "Fn::Join": [
+                        "",
+                        [
+                          "https://s3.",
+                          {
+                            "Ref": "AWS::Region"
+                          },
+                          ".",
+                          {
+                            "Ref": "AWS::URLSuffix"
+                          },
+                          "/",
+                          {
+                            "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
+                          },
+                          "/20160c1ad9016484783b79c7c6aaaf268f5afdd48a61f6638a99263ec4524acc.json"
+                        ]
+                      ]
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnStack",
+                  "version": "2.172.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "constructs.Construct",
+              "version": "10.4.2"
+            }
+          },
+          "definedFunctions": {
+            "id": "definedFunctions",
+            "path": "amplify-test01-81907-sandbox-2c13369eb4/definedFunctions",
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.CfnOutput",
+              "version": "2.172.0"
+            }
+          },
+          "customOutputs": {
+            "id": "customOutputs",
+            "path": "amplify-test01-81907-sandbox-2c13369eb4/customOutputs",
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.CfnOutput",
+              "version": "2.172.0"
+            }
+          },
+          "CDKMetadata": {
+            "id": "CDKMetadata",
+            "path": "amplify-test01-81907-sandbox-2c13369eb4/CDKMetadata",
+            "children": {
+              "Default": {
+                "id": "Default",
+                "path": "amplify-test01-81907-sandbox-2c13369eb4/CDKMetadata/Default",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnResource",
+                  "version": "2.172.0"
+                }
+              },
+              "Condition": {
+                "id": "Condition",
+                "path": "amplify-test01-81907-sandbox-2c13369eb4/CDKMetadata/Condition",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnCondition",
+                  "version": "2.172.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "constructs.Construct",
+              "version": "10.4.2"
+            }
+          },
+          "BootstrapVersion": {
+            "id": "BootstrapVersion",
+            "path": "amplify-test01-81907-sandbox-2c13369eb4/BootstrapVersion",
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.CfnParameter",
+              "version": "2.172.0"
+            }
+          },
+          "CheckBootstrapVersion": {
+            "id": "CheckBootstrapVersion",
+            "path": "amplify-test01-81907-sandbox-2c13369eb4/CheckBootstrapVersion",
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.CfnRule",
+              "version": "2.172.0"
+            }
+          }
+        },
+        "constructInfo": {
+          "fqn": "aws-cdk-lib.Stack",
+          "version": "2.172.0"
+        }
+      },
+      "Tree": {
+        "id": "Tree",
+        "path": "Tree",
+        "constructInfo": {
+          "fqn": "constructs.Construct",
+          "version": "10.4.2"
+        }
+      }
+    },
+    "constructInfo": {
+      "fqn": "aws-cdk-lib.App",
+      "version": "2.172.0"
+    }
+  }
+}
